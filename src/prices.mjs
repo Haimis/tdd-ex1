@@ -92,6 +92,7 @@ function createApp(database) {
     const date2 = parseTemporalPlainDate(date.toISOString().split('T')[0]);
     const holidays = database.getHolidays();
     for (let row of holidays) {
+      console.log(date2 in holidays)
       let holiday2 = parseTemporalPlainDate(row.holiday)
       // trueOrfalse(date2, holiday2)
       if (
