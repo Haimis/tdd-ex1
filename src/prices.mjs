@@ -29,6 +29,12 @@ function createApp(database) {
     }
   }
 
+  function parseTemporalPlainDateDate(dateString) {
+    if (dateString) {
+      return Temporal.PlainDate.from(dateString);
+    }
+  }
+
   function calculateCost(age, type, date, baseCost) {
     if (type === "night") {
       return calculateCostForNightTicket(age, baseCost);
@@ -82,7 +88,7 @@ function createApp(database) {
   function isHoliday(date) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
-      let holiday = Temporal.PlainDate.from(row.holiday);
+      let holiday = parseTemporalPlainDateDate(row.holiday);
       if (
         date &&
         date.getFullYear() === holiday.year &&
