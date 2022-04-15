@@ -86,7 +86,7 @@ function createApp(database) {
   function isMonday2 (date) {return date.dayOfWeek === 1;}
 
   
-  function trueOrfalse (date, holiday) {if (date && date.year === holiday.year && date.month === holiday.month && date.day === holiday.day) return True}
+  function trueOrfalse (date, holiday) {if (date && date.year === holiday.year && date.month === holiday.month && date.day === holiday.day) return true}
 
   function isHoliday(date) {
     const date2 = parseTemporalPlainDate(date.toISOString().split('T')[0]);
