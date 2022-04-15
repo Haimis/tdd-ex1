@@ -88,6 +88,7 @@ function createApp(database) {
   function isHoliday2 (date) {database.getHolidays().forEach((row) => {return date && date.year === parseTemporalPlainDate(row).year && date.month === parseTemporalPlainDate(row).month && date.day === parseTemporalPlainDate(row).day });}
 
   function isHoliday(date) {
+    const l = [1,2,3]
     const date2 = parseTemporalPlainDate(date.toISOString().split('T')[0]);
     const holidays = database.getHolidays();
     for (let row of holidays) {
