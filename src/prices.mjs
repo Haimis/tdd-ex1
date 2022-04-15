@@ -18,7 +18,7 @@ function createApp(database) {
     const age = req.query.age;
     const type = req.query.type;
     const baseCost = database.findBasePriceByType(type).cost;
-    const date = parseTemporalPlainDate(req.query.date);
+    const date = parseDate(req.query.date);
     const cost = calculateCost(age, type, date, baseCost);
     res.json({ cost });
   });
@@ -28,10 +28,6 @@ function createApp(database) {
       return new Date(dateString);
     }
   }
-
-  function fromDate (date) {if (date) return Temporal.PlainDate.from({ year: date.getFullYear(), month: (date.getMonth() + 1), day: date.getDate() });}
-
-  function parseTemporalPlainDate (dateString) {if (dateString) return Temporal.PlainDate.from(dateString);}
 
   function calculateCost(age, type, date, baseCost) {
     if (type === "night") {
@@ -55,7 +51,7 @@ function createApp(database) {
   }
 
   function calculateCostForDayTicket(age, date, baseCost) {
-    let reduction = calculateReduction2(date);
+    let reduction = calculateReduction(date);
     if (age === undefined) {
       return Math.ceil(baseCost * (1 - reduction / 100));
     }
@@ -72,38 +68,26 @@ function createApp(database) {
   }
 
   function calculateReduction(date) {
-    const date2 = fromDate(date);
     let reduction = 0;
-    if (date && isMonday2(date2) && !isHoliday2(date2, database.getHolidays())) {
+    if (date && isMonday(date) && !isHoliday(date)) {
       reduction = 35;
     }
     return reduction;
   }
-  
-  function calculateReduction2 (date) {if (date && isMonday2(date) && !isHoliday2(date, database.getHolidays())) return 35; return 0;}
-  
+
   function isMonday(date) {
-    return fromDate(date).dayOfWeek === 1;
+    return date.getDay() === 1;
   }
 
-  function isMonday2 (date) {return date.dayOfWeek === 1;}
-
-  
-  function trueOrfalse (date, holiday) {if (date && date.year === holiday.year && date.month === holiday.month && date.day === holiday.day) return true}
-
-  function isHoliday2 (date, holidays) { for (let row of holidays) if (trueOrfalse(date, parseTemporalPlainDate(row.holiday))) return true; return false;}
-
   function isHoliday(date) {
-    const date2 = parseTemporalPlainDate(date.toISOString().split('T')[0]);
     const holidays = database.getHolidays();
-    isHoliday2(date2, database.getHolidays());
     for (let row of holidays) {
-      let holiday2 = parseTemporalPlainDate(row.holiday)
+      let holiday = new Date(row.holiday);
       if (
-        date2 &&
-        date2.year === holiday2.year &&
-        date2.month === holiday2.month &&
-        date2.day === holiday2.day
+        date &&
+        date.getFullYear() === holiday.getFullYear() &&
+        date.getMonth() === holiday.getMonth() &&
+        date.getDate() === holiday.getDate()
       ) {
         return true;
       }
