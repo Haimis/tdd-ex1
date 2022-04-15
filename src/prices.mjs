@@ -30,6 +30,7 @@ function createApp(database) {
   }
 
   function fromDate (date) {return Temporal.PlainDate.from({ year: date.getFullYear(), month: (date.getMonth() + 1), day: date.getDate() });}
+  
 
   function calculateCost(age, type, date, baseCost) {
     if (type === "night") {
