@@ -74,7 +74,7 @@ function createApp(database) {
   function calculateReduction(date) {
     const date2 = fromDate(date);
     let reduction = 0;
-    if (date && isMonday2(fromDate(date)) && !isHoliday2(fromDate(date), database.getHolidays())) {
+    if (date && isMonday2(date2) && !isHoliday2(date2, database.getHolidays())) {
       reduction = 35;
     }
     return reduction;
