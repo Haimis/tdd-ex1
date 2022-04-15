@@ -85,7 +85,7 @@ function createApp(database) {
 
   function isMonday2 (date) {return date.dayOfWeek === 1;}
 
-  function iterate (date, holidays) {holidays.forEach((holiday) => trueOrfalse(date, holiday))}
+  function iterate (date, holidays) {holidays.forEach((holiday) => {return trueOrfalse(date, holiday)})}
   function trueOrfalse (date, holiday) {return (date && date.year === holiday.year && date.month === holiday.month && date.day === holiday.day)}
 
   function isHoliday(date) {
