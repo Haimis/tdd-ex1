@@ -29,6 +29,8 @@ function createApp(database) {
     }
   }
 
+  function fromDate(date) {return Temporal.PlainDate.from({year: date.getFullYear(), month: date.getMonth(), day: date.getDate()})}
+
   function calculateCost(age, type, date, baseCost) {
     if (type === "night") {
       return calculateCostForNightTicket(age, baseCost);
@@ -76,7 +78,7 @@ function createApp(database) {
   }
 
   function isMonday(date) {
-    return date.getDay() === 1;
+    return fromDate(date).dayOfWeek === 1;
   }
 
   function isHoliday(date) {
