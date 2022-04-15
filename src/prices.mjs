@@ -81,6 +81,7 @@ function createApp(database) {
 
   function isMonday(date) {
     const l = [1,2,3]
+    l.forEach(d => {console.log(d)})
     return fromDate(date).dayOfWeek === 1;
   }
 
