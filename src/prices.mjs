@@ -89,7 +89,7 @@ function createApp(database) {
       let holiday = new Date(row.holiday);
       if (
         newdate &&
-        date.getFullYear() === holiday.getFullYear() &&
+        newdate.year === holiday.getFullYear() &&
         date.getMonth() === holiday.getMonth() &&
         date.getDate() === holiday.getDate()
       ) {
