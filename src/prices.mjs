@@ -86,10 +86,10 @@ function createApp(database) {
     for (let row of holidays) {
       let holiday = new Date(row.holiday);
       if (
-        date &&
-        date.getFullYear() === holiday.getFullYear() &&
-        date.getMonth() === holiday.getMonth() &&
-        date.getDate() === holiday.getDate()
+        fromDate(date) &&
+        date.getFullYear() === fromDate(holiday).year &&
+        date.getMonth() === fromDate(holiday).month &&
+        date.getDate() === fromDate(holiday).month
       ) {
         return true;
       }
