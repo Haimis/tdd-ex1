@@ -88,7 +88,7 @@ function createApp(database) {
   
   function trueOrfalse (date, holiday) {if (date && date.year === holiday.year && date.month === holiday.month && date.day === holiday.day) return true}
 
-  function isHoliday2 (date, holidays) { for (let row of holidays) console.log(trueOrfalse(date, parseTemporalPlainDate(row.holiday)))}
+  function isHoliday2 (date, holidays) { for (let row of holidays) if (trueOrfalse(date, parseTemporalPlainDate(row.holiday))) return true; return false;}
 
   function isHoliday(date) {
     const date2 = parseTemporalPlainDate(date.toISOString().split('T')[0]);
