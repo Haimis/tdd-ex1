@@ -89,7 +89,7 @@ function createApp(database) {
       let holiday = parseDate2(row.holiday);
       if (
         date &&
-        newdate.year === holiday.year &&
+        date.year === holiday.year &&
         newdate.month === holiday.month &&
         newdate.day === holiday.day
       ) {
