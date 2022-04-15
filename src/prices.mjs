@@ -84,12 +84,12 @@ function createApp(database) {
   function isHoliday(date) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
-      let holiday = new Date(row.holiday);
+      let holiday = fromDate(new Date(row.holiday));
       if (
         fromDate(date) &&
-        date.getFullYear() === fromDate(holiday).year &&
-        date.getMonth() === fromDate(holiday).month &&
-        date.getDate() === fromDate(holiday).month
+        date.getFullYear() === holiday.year &&
+        date.getMonth() === holiday.month &&
+        date.getDate() === holiday.month
       ) {
         return true;
       }
