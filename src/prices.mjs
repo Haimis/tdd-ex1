@@ -31,7 +31,7 @@ function createApp(database) {
 
   function fromDate (date) {if (date) return Temporal.PlainDate.from({ year: date.getFullYear(), month: (date.getMonth() + 1), day: date.getDate() });}
 
-  function parseTemporalPlainDate (dateString) {return Temporal.PlainDate.from(dateString);}
+  function parseTemporalPlainDate (dateString) {if (dateString) return Temporal.PlainDate.from(dateString);}
 
   function calculateCost(age, type, date, baseCost) {
     if (type === "night") {
