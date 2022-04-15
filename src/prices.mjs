@@ -29,7 +29,7 @@ function createApp(database) {
     }
   }
 
-  function fromDate (date) {return Temporal.PlainDate.from({ year: date.getFullYear(), month: (date.getMonth() + 1), day: date.getDate() });}
+  function fromDate (date) {if (date) return Temporal.PlainDate.from({ year: date.getFullYear(), month: (date.getMonth() + 1), day: date.getDate() });}
 
   function parseTemporalPlainDate (dateString) {return Temporal.PlainDate.from(dateString);}
 
