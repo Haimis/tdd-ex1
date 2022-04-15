@@ -71,7 +71,6 @@ function createApp(database) {
     return Math.ceil(baseCost * (1 - reduction / 100));
   }
   
-  
 
   function calculateReduction(date) {
     const date2 = fromDate(date);
