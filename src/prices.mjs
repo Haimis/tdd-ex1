@@ -6,7 +6,7 @@ import express from "express";
 
 function createApp(database) {
   const app = express();
-  let date = '';
+  let maindate = '';
 
   app.put("/prices", (req, res) => {
     const liftPassCost = req.query.cost;
