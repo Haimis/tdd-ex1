@@ -85,7 +85,6 @@ function createApp(database) {
 
   function isMonday2 (date) {return date.dayOfWeek === 1;}
 
-  
 
   function isHoliday(date) {
     const l = [1,2,3]
